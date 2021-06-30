@@ -7,7 +7,6 @@ import AppReducer from "./AppReducer";
 //   getCookie,
 //   deleteCookie,
 // } from "../helpers/Functions";
-import { Info } from "react-feather";
 
 const initialState = {
   car_info: {

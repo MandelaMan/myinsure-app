@@ -4,7 +4,7 @@ import Navigation from "../components/layout/Navigation";
 import Modal from "../components/modals/Modal";
 
 const Quote = () => {
-  const { car_info, getCarInfo } = useContext(GlobalContext);
+  const { getCarInfo } = useContext(GlobalContext);
 
   useEffect(() => {
     getCarInfo(); // eslint-disable-next-line

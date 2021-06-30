@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import car from "../images/car.png";
 import { GlobalContext } from "../context/GlobalState";
-import { car_make, car_models } from "../data";
+import { car_make } from "../data";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
@@ -11,7 +11,8 @@ const CarFormDetails = () => {
 
   const history = useHistory();
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);

@@ -10,7 +10,8 @@ const CarDetails = ({ carInfo, setstep }) => {
 
   const history = useHistory();
 
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit } = useForm();
+  // const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);

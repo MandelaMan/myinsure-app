@@ -1,10 +1,10 @@
 import React from "react";
 import ComparisonItem from "./ComparisonItem";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { ChevronDown } from "react-feather";
 
 const ComparisonModal = ({ setselected }) => {
-  const history = useHistory();
+  // const history = useHistory();
 
   const items = [{}, {}, {}, {}];
 
