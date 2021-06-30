@@ -27,11 +27,11 @@ const Quotes = () => {
                     <h4>Motor Insurance Quotes</h4>
                   </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-md-5 col-12">
                     <div className="sm-card"></div>
                   </div>
-                  {/* <div className="offset-md-1 col-md-6 col-12">
+                  <div className="offset-md-1 col-md-6 col-12">
                     <h6>Enhance my plan</h6>
                     <ul>
                       <li>
@@ -53,8 +53,8 @@ const Quotes = () => {
                         </label>
                       </li>
                     </ul>
-                  </div> */}
-                </div>
+                  </div>
+                </div> */}
               </div>
               <div className="row">
                 {plans.map((p, i) => (
