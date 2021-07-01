@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from "../../../context/GlobalState";
 import ComparisonItem from "./ComparisonItem";
 // import { useHistory } from "react-router-dom";
 import { ChevronDown } from "react-feather";
 
 const ComparisonModal = ({ setselected }) => {
+  const { getComparisonList, to_compare, removeFromComparisonList } =
+    useContext(GlobalContext);
+
   // const history = useHistory();
 
-  const items = [{}, {}, {}, {}];
+  useEffect(() => {
+    getComparisonList(); // eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -19,8 +25,14 @@ const ComparisonModal = ({ setselected }) => {
               </div>
               <div className="col-md-8">
                 <div className="comparison-item">
-                  {items.map((c, i) => (
-                    <ComparisonItem setselected={setselected} items={items} />
+                  {to_compare.map((c, i) => (
+                    <ComparisonItem
+                      key={i}
+                      setselected={setselected}
+                      item={c}
+                      items={to_compare.length}
+                      removeFromComparisonList={removeFromComparisonList}
+                    />
                   ))}
                 </div>
               </div>

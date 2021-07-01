@@ -6,11 +6,14 @@ import Modal from "../components/modals/Modal";
 import { plans } from "../data";
 
 const Quotes = () => {
-  const { car_info, getCarInfo } = useContext(GlobalContext);
+  const { car_info, getCarInfo, to_compare } = useContext(GlobalContext);
 
   const [selected, setselected] = useState("");
 
   useEffect(() => {
+    if (to_compare.length > 0) {
+      setselected("compare");
+    }
     getCarInfo(); // eslint-disable-next-line
   }, []);
 
@@ -56,7 +59,7 @@ const Quotes = () => {
                   </div>
                 </div> */}
               </div>
-              <div className="row">
+              <div className="row mb-10">
                 {plans.map((p, i) => (
                   <div className="col-md-4 col-12" key={i}>
                     <QuoteCard

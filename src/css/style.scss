@@ -432,7 +432,7 @@ body {
     .quote-display {
       width: 70%;
       min-height: 500px;
-      margin: 1% auto 2% auto;
+      margin: 1% auto 10% auto;
 
       .specific-quote {
         width: 100%;
@@ -604,6 +604,7 @@ body {
           }
           .text {
             padding: 3% 0 0 0;
+            text-align: center;
 
             span {
               font-weight: bold;
@@ -694,13 +695,21 @@ body {
             button {
               width: 100%;
               padding: 0.5rem 1rem;
-              // background-color: #f72585;
-              color: #fff;
-              border: 0 none;
-              background: linear-gradient(180deg, #f54c4c 0, #f43333 100%);
-              box-shadow: 0 10px 25px -10px #f54c4c;
+              // color: #fff;
+              // border: 0 none;
+              // background: linear-gradient(180deg, #f54c4c 0, #f43333 100%);
+              // box-shadow: 0 10px 25px -10px #f54c4c;
+              // transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+              // border-radius: 3px;
+              // cursor: pointer;
+
+              color: #f54c4c;
+              font-weight: bold;
+              border: 1.5px solid #f54c4c;
+              background: transparent;
+              // box-shadow: 0 10px 25px -10px #f54c4c;
               transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-              border-radius: 3px;
+              border-radius: 4px;
               cursor: pointer;
             }
           }

@@ -1,3 +1,9 @@
+import madison from "./images/logos/madison.png";
+import aar from "./images/logos/aar.png";
+import icea from "./images/logos/icea.png";
+import apa from "./images/logos/apa.png";
+import cic from "./images/logos/cic.png";
+
 export const ntsa_car_data = [
   {
     no_plate: "KCA 001A",
@@ -103,6 +109,10 @@ export const plans = [
     excess: 0.0045,
     pvt: 0.004,
     phcf: 0.0025,
+
+    code: "abcd",
+    logo: aar,
+    company: "aar",
     levy: 40,
   },
   {
@@ -111,6 +121,9 @@ export const plans = [
     excess: 0.0055,
     pvt: 0.004,
     phcf: 0.0025,
+    code: "efgh",
+    logo: aar,
+    company: "aar",
     levy: 40,
   },
   {
@@ -119,6 +132,9 @@ export const plans = [
     excess: 0.006,
     pvt: 0.003,
     phcf: 0.0025,
+    code: "ijkl",
+    logo: madison,
+    company: "madison",
     levy: 40,
   },
   {
@@ -127,6 +143,9 @@ export const plans = [
     excess: 0.004,
     pvt: 0.004,
     phcf: 0.0025,
+    code: "mnop",
+    logo: apa,
+    company: "apa",
     levy: 40,
   },
   {
@@ -135,30 +154,42 @@ export const plans = [
     excess: 0.0048,
     pvt: 0.005,
     phcf: 0.0025,
+    code: "qrst",
+    logo: icea,
+    company: "icea",
     levy: 40,
   },
   {
     name: "Motor Best Plan",
     best_value: false,
-    excess: 0.0032,
-    pvt: 0.006,
+    excess: 0.0092,
+    pvt: 0.009,
     phcf: 0.0025,
+    code: "uvwx",
+    logo: madison,
+    company: "madison",
     levy: 40,
   },
   {
     name: "Vehicle Plan Select",
     best_value: false,
-    excess: 0.004,
+    excess: 0.019,
     pvt: 0.004,
     phcf: 0.0025,
+    code: "z1ab",
+    logo: apa,
+    company: "apa",
     levy: 40,
   },
   {
     name: "Motor Best Plan",
     best_value: true,
-    excess: 0.0048,
+    excess: 0.0012,
     pvt: 0.005,
     phcf: 0.0025,
+    code: "2cde",
+    logo: cic,
+    company: "cic",
     levy: 40,
   },
   {
@@ -167,6 +198,9 @@ export const plans = [
     excess: 0.0032,
     pvt: 0.006,
     phcf: 0.0025,
+    code: "3fgh",
+    logo: aar,
+    company: "aar",
     levy: 40,
   },
 ];

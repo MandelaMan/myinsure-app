@@ -4,6 +4,11 @@ const AppReducer = (state, action) => {
   // console.log("payload", action.payload);
 
   switch (action.type) {
+    case "SET_COMPARISON_ITEMS":
+      return {
+        ...state,
+        to_compare: action.payload,
+      };
     case "SET_CAR_INFO":
       return {
         ...state,

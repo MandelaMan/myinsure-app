@@ -8,15 +8,21 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 const CarDetails = ({ carInfo, setstep }) => {
-  const { updateCarInfo } = useContext(GlobalContext);
+  const { updateCarInfo, clearComparisonList } = useContext(GlobalContext);
 
   const history = useHistory();
 
-  const { handleSubmit } = useForm();
+  const { handleSubmit, register } = useForm();
   // const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    clearComparisonList();
+
+    data["make"] = carInfo.make;
+    data["model"] = carInfo.model;
+    data["year"] = carInfo.year;
+    data["fuel"] = carInfo.fuel;
+    data["value"] = carInfo.value;
 
     updateCarInfo(data);
 
@@ -72,7 +78,14 @@ const CarDetails = ({ carInfo, setstep }) => {
           </div>
         </div>
         <form className="car-details-form" onSubmit={handleSubmit(onSubmit)}>
-          <input type="text" name="mobile" placeholder="Enter mobile number" />
+          <input
+            type="text"
+            name="mobile"
+            ref={register({
+              required: "Please enter password",
+            })}
+            placeholder="Enter mobile number"
+          />
           <button>
             SHOW ME QUOTES&nbsp;
             <ArrowRight size={18} />

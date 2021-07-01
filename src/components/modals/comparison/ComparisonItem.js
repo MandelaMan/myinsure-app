@@ -1,23 +1,45 @@
 import React from "react";
 import { XCircle } from "react-feather";
 import apa from "../../../images/logos/apa.png";
+import icea from "../../../images/logos/icea.png";
+import madison from "../../../images/logos/madison.png";
+import aar from "../../../images/logos/aar.png";
+import cic from "../../../images/logos/cic.png";
 
-const ComparisonItem = ({ setselected, items }) => {
+const ComparisonItem = ({
+  setselected,
+  item,
+  items,
+  removeFromComparisonList,
+}) => {
+  const insuranceLogo = (name) => {
+    if (name === "apa") return apa;
+    if (name === "madison") return madison;
+    if (name === "aar") return aar;
+    if (name === "icea") return icea;
+    if (name === "cic") return cic;
+  };
   return (
     <>
       <div className="item">
         <div className="desc">
           <div className="logo">
-            <img src={apa} alt="" />
+            <img src={insuranceLogo(item.company)} alt="" />
           </div>
           <div className="name">
-            <span>Motor Best Insurance</span>
+            <span>{item.name}</span>
           </div>
           <div className="price">
-            <span>KSH 35,000 /yr</span>
+            <span>KSH {item.price} /yr</span>
           </div>
         </div>
-        <button onClick={() => items < 2 && setselected("")}>
+        <button
+          onClick={() => {
+            console.log(items);
+            items < 2 && setselected("");
+            removeFromComparisonList(item.code);
+          }}
+        >
           <XCircle size={15} />
         </button>
       </div>

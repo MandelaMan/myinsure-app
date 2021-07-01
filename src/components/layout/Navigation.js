@@ -14,13 +14,13 @@ const Navigation = () => {
         </div>
         <ul className="menu">
           <li>
-            <Link>About</Link>
+            <Link to="">About</Link>
           </li>
           <li>
-            <Link>Claim</Link>
+            <Link to="">Claim</Link>
           </li>
           <li>
-            <Link>Sign In</Link>
+            <Link to="">Sign In</Link>
           </li>
           <li>
             <Link>

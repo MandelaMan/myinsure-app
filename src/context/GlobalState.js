@@ -9,6 +9,7 @@ import AppReducer from "./AppReducer";
 // } from "../helpers/Functions";
 
 const initialState = {
+  to_compare: [{}, {}, {}, {}],
   car_info: {
     make: undefined,
     model: undefined,
@@ -23,6 +24,63 @@ export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  async function addToComparisonList(code, name, price, company) {
+    let comparison = JSON.parse(localStorage.compare);
+
+    let element = { name: code };
+
+    const exists = comparison.some((item) => item.code === element.name);
+
+    if (!exists) {
+      let cart;
+
+      const item = {
+        code,
+        name,
+        price,
+        company,
+      };
+
+      cart = JSON.parse(localStorage.compare);
+
+      cart = [...cart, item];
+
+      localStorage.compare = JSON.stringify(cart);
+
+      getComparisonList();
+    } else {
+      console.log("item already exists in the cart");
+    }
+  }
+
+  async function getComparisonList() {
+    const toCompare = localStorage.compare;
+
+    if (toCompare) {
+      dispatch({
+        type: "SET_COMPARISON_ITEMS",
+        payload: JSON.parse(toCompare),
+      });
+    } else {
+      localStorage.compare = JSON.stringify([]);
+    }
+  }
+  async function removeFromComparisonList(code) {
+    let cart = JSON.parse(localStorage.compare);
+
+    cart = cart.filter((item) => item.code !== code);
+
+    localStorage.compare = JSON.stringify(cart);
+
+    getComparisonList();
+  }
+
+  async function clearComparisonList() {
+    localStorage.compare = JSON.stringify([]);
+
+    getComparisonList();
+  }
 
   async function updateCarInfo(info) {
     dispatch({
@@ -43,6 +101,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     getCarInfo();
+    getComparisonList();
     // eslint-disable-next-line
   }, []);
 
@@ -51,8 +110,13 @@ export const GlobalProvider = ({ children }) => {
       value={{
         updateCarInfo,
         getCarInfo,
+        addToComparisonList,
+        getComparisonList,
+        removeFromComparisonList,
+        clearComparisonList,
 
         car_info: state.car_info,
+        to_compare: state.to_compare,
       }}
     >
       {children}
