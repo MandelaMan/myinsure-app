@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import { useHistory } from "react-router-dom";
-import apa from "../../images/logos/apa.png";
 import { addCommas } from "../../helpers/Functions";
 
 const QuoteCard = ({ plan, car_info, setselected }) => {
