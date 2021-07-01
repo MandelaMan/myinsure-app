@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import car from "../images/car.png";
 import { GlobalContext } from "../context/GlobalState";
 import { ArrowRight, ChevronDown, HelpCircle } from "react-feather";
+
+// import { addCommas } from "../helpers/Functions";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
@@ -62,6 +64,7 @@ const CarDetails = ({ carInfo, setstep }) => {
                     <ChevronDown size={13} />
                   </span>
                   <br />
+                  {/* Ksh&nbsp;{addCommas(carInfo.value)} */}
                   Ksh&nbsp;{carInfo.value}
                 </h4>
               </div>
