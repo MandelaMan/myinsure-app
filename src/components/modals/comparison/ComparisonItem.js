@@ -35,7 +35,6 @@ const ComparisonItem = ({
         </div>
         <button
           onClick={() => {
-            console.log(items);
             items < 2 && setselected("");
             removeFromComparisonList(item.code);
           }}

@@ -71,9 +71,13 @@ export const GlobalProvider = ({ children }) => {
 
     cart = cart.filter((item) => item.code !== code);
 
-    localStorage.compare = JSON.stringify(cart);
+    if (cart.length < 1) {
+      clearComparisonList();
+    } else {
+      localStorage.compare = JSON.stringify(cart);
 
-    getComparisonList();
+      getComparisonList();
+    }
   }
 
   async function clearComparisonList() {

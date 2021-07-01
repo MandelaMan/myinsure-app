@@ -14,7 +14,11 @@ const Quote = () => {
     getCarInfo(); // eslint-disable-next-line
   }, []);
 
-  const accordion = [{ text: "Summary" }, { text: "Details" }];
+  const accordion = [
+    { text: "Summary" },
+    { text: "Details" },
+    { text: "More Features" },
+  ];
 
   return (
     <>
