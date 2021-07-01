@@ -34,7 +34,9 @@ body {
 
   .compare {
     width: 100%;
-    height: 130px;
+    height: 140px;
+    border: 0 none;
+    border-top: 1px solid #5e6a74;
     background-color: rgba(255, 255, 255, 0.95);
     position: fixed;
     bottom: 0;
