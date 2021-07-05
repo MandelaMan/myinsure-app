@@ -21,6 +21,7 @@ const initialState = {
   excess: false,
   pvt: false,
   aa_rescue: false,
+  phcf: false,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -34,16 +35,47 @@ export const GlobalProvider = ({ children }) => {
       payload: !state.excess,
     });
   }
+
   async function updatePvt() {
     dispatch({
       type: "UPDATE_PVT",
       payload: !state.pvt,
     });
   }
+
   async function updateAA_Rescue() {
     dispatch({
       type: "UPDATE_AA_RESCUE",
       payload: !state.aa_rescue,
+    });
+  }
+
+  async function updatePHCF() {
+    dispatch({
+      type: "UPDATE_PHCF",
+      payload: !state.phcf,
+    });
+  }
+
+  async function resetBenefits() {
+    dispatch({
+      type: "UPDATE_EXCESS",
+      payload: false,
+    });
+
+    dispatch({
+      type: "UPDATE_PVT",
+      payload: false,
+    });
+
+    dispatch({
+      type: "UPDATE_AA_RESCUE",
+      payload: false,
+    });
+
+    dispatch({
+      type: "UPDATE_PHCF",
+      payload: false,
     });
   }
 
@@ -115,6 +147,7 @@ export const GlobalProvider = ({ children }) => {
     });
 
     localStorage.car_info = JSON.stringify(info);
+    clearComparisonList();
   }
 
   async function getCarInfo() {
@@ -143,12 +176,15 @@ export const GlobalProvider = ({ children }) => {
         updateExcess,
         updatePvt,
         updateAA_Rescue,
+        updatePHCF,
+        resetBenefits,
 
         car_info: state.car_info,
         to_compare: state.to_compare,
         excess: state.excess,
         pvt: state.pvt,
         aa_rescue: state.aa_rescue,
+        phcf: state.phcf,
       }}
     >
       {children}

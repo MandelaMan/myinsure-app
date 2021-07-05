@@ -4,6 +4,11 @@ const AppReducer = (state, action) => {
   // console.log("payload", action.payload);
 
   switch (action.type) {
+    case "UPDATE_PHCF":
+      return {
+        ...state,
+        phcf: action.payload,
+      };
     case "UPDATE_AA_RESCUE":
       return {
         ...state,

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import QuoteCard from "../components/reusables/QuoteCard";
 import Navigation from "../components/layout/Navigation";
 import Modal from "../components/modals/Modal";
+import { addCommas } from "../helpers/Functions";
 import { car_make, plans } from "../data";
 import _ from "lodash";
 
@@ -18,6 +19,12 @@ const Quotes = () => {
     updateExcess,
     updatePvt,
     updateAA_Rescue,
+    updatePHCF,
+    excess,
+    pvt,
+    aa_rescue,
+    phcf,
+    resetBenefits,
   } = useContext(GlobalContext);
 
   const history = useHistory();
@@ -27,8 +34,6 @@ const Quotes = () => {
   const [selected, setselected] = useState(null);
 
   useEffect(() => {
-    console.log(to_compare.length);
-
     if (to_compare.length > 1) {
       setselected("compare");
     } else {
@@ -38,8 +43,18 @@ const Quotes = () => {
     getCarInfo(); // eslint-disable-next-line
   }, []);
 
+  // useEffect(() => {
+  //   if (to_compare.length > 1) {
+  //     setselected("compare");
+  //   } else {
+  //     setselected(null);
+  //   }
+  //   // eslint-disable-next-line
+  // }, [to_compare]);
+
   const onSubmit = (data) => {
     clearComparisonList();
+    resetBenefits();
 
     data["phone"] = car_info.phone;
 
@@ -150,11 +165,14 @@ const Quotes = () => {
                           </select>
                         </div>
                         <div className="col-md-6 col-12">
-                          <label>Estimated Value</label>
+                          <label>Estimated Value (Approx.)</label>
                           <br />
                           <input
                             type="text"
                             name="value"
+                            onChange={(e) => {
+                              console.log(addCommas(e.target.value));
+                            }}
                             ref={register({
                               required: "Please enter estimated value",
                             })}
@@ -176,6 +194,7 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
+                              checked={excess ? "checked" : ""}
                               onChange={() => updateExcess()}
                             />
                             &nbsp;&nbsp;<span>Add excess protector</span>
@@ -185,6 +204,7 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
+                              checked={pvt ? "checked" : ""}
                               onChange={() => updatePvt()}
                             />
                             &nbsp;&nbsp;<span>Add political violence</span>
@@ -194,6 +214,17 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
+                              checked={phcf ? "checked" : ""}
+                              onChange={() => updatePHCF()}
+                            />
+                            &nbsp;&nbsp;<span>Add PHCF</span>
+                          </label>
+                        </li>
+                        <li>
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={aa_rescue ? "checked" : ""}
                               onChange={() => updateAA_Rescue()}
                             />
                             &nbsp;&nbsp;<span>Include AA rescue services</span>

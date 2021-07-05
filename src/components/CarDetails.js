@@ -8,7 +8,8 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 const CarDetails = ({ carInfo, setstep }) => {
-  const { updateCarInfo, clearComparisonList } = useContext(GlobalContext);
+  const { updateCarInfo, clearComparisonList, resetBenefits } =
+    useContext(GlobalContext);
 
   const history = useHistory();
 
@@ -17,6 +18,8 @@ const CarDetails = ({ carInfo, setstep }) => {
 
   const onSubmit = (data) => {
     clearComparisonList();
+
+    resetBenefits();
 
     data["make"] = carInfo.make;
     data["model"] = carInfo.model;

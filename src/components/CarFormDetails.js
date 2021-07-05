@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
 const CarFormDetails = () => {
-  const { updateCarInfo, car_info, clearComparisonList } =
+  const { updateCarInfo, car_info, clearComparisonList, resetBenefits } =
     useContext(GlobalContext);
 
   const history = useHistory();
@@ -17,6 +17,7 @@ const CarFormDetails = () => {
 
   const onSubmit = (data) => {
     clearComparisonList();
+    resetBenefits();
 
     console.log(data);
 

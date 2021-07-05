@@ -108,8 +108,7 @@ export const plans = [
     best_value: false,
     excess: 0.0045,
     pvt: 0.004,
-    phcf: 0.0025,
-
+    phcf: 0.0067,
     code: "abcd",
     logo: aar,
     company: "aar",
@@ -131,7 +130,7 @@ export const plans = [
     best_value: false,
     excess: 0.006,
     pvt: 0.003,
-    phcf: 0.0025,
+    phcf: 0.0115,
     code: "ijkl",
     logo: aar,
     company: "aar",
