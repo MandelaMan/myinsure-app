@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import { Link } from "react-router-dom";
+import { ChevronLeft } from "react-feather";
 import Navigation from "../components/layout/Navigation";
 import Modal from "../components/modals/Modal";
 import { ChevronDown } from "react-feather";
@@ -27,6 +29,14 @@ const Quote = () => {
           <Navigation />
           <section className="quote-display">
             <div className="container-fluid">
+              <div className="row">
+                <div className="col-md-6 col-12 mt-10">
+                  <Link to="/insurance-quotes">
+                    <ChevronLeft size={15} />
+                    Back to quotes
+                  </Link>
+                </div>
+              </div>
               <div className="row specific-quote">
                 <div className="col-md-8 col-12">
                   <div className="quote-content">

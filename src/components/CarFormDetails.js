@@ -121,7 +121,7 @@ const CarFormDetails = () => {
                   type="text"
                   name="value"
                   ref={register({
-                    required: "Please enter password",
+                    required: "Please enter estimated value",
                   })}
                   placeholder="Car estimated value"
                   defaultValue={car_info.value || ""}
