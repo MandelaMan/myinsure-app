@@ -25,8 +25,8 @@ const Quote = () => {
 
   const accordion = [
     { text: "Summary" },
+    { text: "Benefits" },
     { text: "Details" },
-    { text: "More Features" },
   ];
 
   return (
@@ -38,6 +38,7 @@ const Quote = () => {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-6 col-12 mt-10">
+                  <br />
                   <Link to="/insurance-quotes">
                     <ChevronLeft size={15} />
                     Back to quotes
@@ -75,11 +76,14 @@ const Quote = () => {
                             <Star size={18} style={{ color: "#ffdf00" }} />
                           </li>
                           <li>
-                            <span>4/5</span>
+                            <span>4 of 5 based on user reviews</span>
                           </li>
                         </ul>
                       </div>
                       <div className="intro-section buy">
+                        <p>
+                          KSH&nbsp;1,734,000<span>/yr</span>.
+                        </p>
                         <button>PURCHASE</button>
                       </div>
                     </div>
@@ -98,7 +102,11 @@ const Quote = () => {
                       </ul>
                       {activeAccordion === 1 && (
                         <div className="details">
-                          <h6>COVER INCLUDES</h6>
+                          <h6>COVER DURATION</h6>
+                          <ul>
+                            <li>From 05/07/2021 valid through to 05/07/2022</li>
+                          </ul>
+                          <h6>COVER DETAILS</h6>
                           <ul>
                             <li>
                               {excess ? (
@@ -222,7 +230,6 @@ const Quote = () => {
                       {/* <span>Information</span> */}
                     </h6>
                     <ul className="client-review">
-                      <li></li>
                       <li></li>
                       <li></li>
                       <li></li>

@@ -23,7 +23,7 @@ const Navigation = () => {
             <Link to="">Sign In</Link>
           </li>
           <li>
-            <Link>
+            <Link to="">
               <HelpCircle size={15} />
               &nbsp;Help
             </Link>

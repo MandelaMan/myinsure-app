@@ -11,6 +11,10 @@ const ComparisonItem = ({
   item,
   items,
   removeFromComparisonList,
+  excess,
+  pvt,
+  aa_rescue,
+  phcf,
 }) => {
   const insuranceLogo = (name) => {
     if (name === "apa") return apa;
@@ -30,7 +34,7 @@ const ComparisonItem = ({
             <span>{item.name}</span>
           </div>
           <div className="price">
-            <span>KSH {item.price} /yr</span>
+            <span>KSH&nbsp;{item.price}&nbsp;/yr</span>
           </div>
         </div>
         <button

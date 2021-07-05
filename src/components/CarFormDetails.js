@@ -19,7 +19,8 @@ const CarFormDetails = () => {
     clearComparisonList();
     resetBenefits();
 
-    console.log(data);
+    data["mobile"] =
+      typeof car_info.mobile === "undefined" ? data.mobile : car_info.mobile;
 
     updateCarInfo(data);
 
@@ -130,17 +131,19 @@ const CarFormDetails = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-8 col-12">
-                <input
-                  type="text"
-                  name="mobile"
-                  ref={register({
-                    required: "Please enter password",
-                  })}
-                  placeholder="Enter mobile number"
-                  defaultValue={car_info.mobile}
-                />
-              </div>
+              {typeof car_info.mobile === "undefined" && (
+                <div className="col-md-8 col-12">
+                  <input
+                    type="text"
+                    name="mobile"
+                    ref={register({
+                      required: "Please enter mobile no.",
+                    })}
+                    placeholder="Mobile Number"
+                    defaultValue={car_info.mobile || ""}
+                  />
+                </div>
+              )}
             </div>
             <div className="row">
               <div className="col-md-8 col-12">

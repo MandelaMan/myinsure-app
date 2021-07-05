@@ -5,8 +5,15 @@ import ComparisonItem from "./ComparisonItem";
 import { ChevronDown } from "react-feather";
 
 const ComparisonModal = ({ setselected }) => {
-  const { getComparisonList, to_compare, removeFromComparisonList } =
-    useContext(GlobalContext);
+  const {
+    getComparisonList,
+    to_compare,
+    removeFromComparisonList,
+    excess,
+    pvt,
+    aa_rescue,
+    phcf,
+  } = useContext(GlobalContext);
 
   // const history = useHistory();
 
@@ -30,6 +37,10 @@ const ComparisonModal = ({ setselected }) => {
                       key={i}
                       setselected={setselected}
                       item={c}
+                      excess={excess}
+                      pvt={pvt}
+                      aa_rescue={aa_rescue}
+                      phcf={phcf}
                       items={to_compare.length}
                       removeFromComparisonList={removeFromComparisonList}
                     />

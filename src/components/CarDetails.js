@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 const CarDetails = ({ carInfo, setstep }) => {
-  const { updateCarInfo, clearComparisonList, resetBenefits } =
+  const { updateCarInfo, clearComparisonList, resetBenefits, car_info } =
     useContext(GlobalContext);
 
   const history = useHistory();
@@ -26,6 +26,9 @@ const CarDetails = ({ carInfo, setstep }) => {
     data["year"] = carInfo.year;
     data["fuel"] = carInfo.fuel;
     data["value"] = carInfo.value;
+
+    data["mobile"] =
+      typeof car_info.mobile === "undefined" ? data.mobile : car_info.mobile;
 
     updateCarInfo(data);
 

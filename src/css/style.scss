@@ -70,7 +70,7 @@ body {
         display: flex;
 
         .item {
-          width: 25%;
+          width: 33.33333333333%;
           border: 0 none;
           border-right: 1px solid $light-text;
           display: flex;
@@ -435,7 +435,6 @@ body {
       width: 70%;
       min-height: 500px;
       margin: 0 auto 10% auto;
-      padding: 1% 0 0 0;
 
       .specific-quote {
         width: 100%;
@@ -463,6 +462,7 @@ body {
           .quote-intro {
             width: 100%;
             height: 100px;
+            padding: 3% 0 0 0;
             display: flex;
             justify-content: flex-start;
 
@@ -481,15 +481,24 @@ body {
 
             .review {
               width: 55%;
-              padding-left: 3%;
+              padding-left: 2%;
+
+              h6 {
+                font-size: 1.5em;
+              }
 
               ul {
+                padding-top: 1%;
                 list-style-type: none;
 
                 li {
                   display: inline-block;
                   padding: 0 0.3rem 0 0;
                 }
+              }
+
+              span {
+                margin-top: -5% !important;
               }
             }
 
@@ -498,13 +507,35 @@ body {
               display: grid;
               place-items: center stretch;
 
+              p {
+                font-size: 1.4em;
+                font-weight: bold;
+                margin-top: -5%;
+                float: right;
+                text-align: center;
+
+                span {
+                  font-size: 0.7em;
+                  font-weight: 500;
+                }
+              }
+
               button {
-                padding: 0.5rem 0;
+                margin-top: -12%;
+                padding: 0.4rem 0;
+                color: #fff;
+                border: 0 none;
+                background: linear-gradient(180deg, #f54c4c 0, #f43333 100%);
+                box-shadow: 0 10px 25px -10px #f54c4c;
+                transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                border-radius: 3px;
+                cursor: pointer;
               }
             }
           }
 
           .quote-summary {
+            margin-top: 3%;
             width: 100%;
             border: 0 none;
 
@@ -603,7 +634,7 @@ body {
           input[type="text"],
           select {
             width: 100%;
-            height: 41px;
+            height: 40px;
             margin-top: -2%;
             margin-bottom: 10%;
             border-radius: 3px 3px 0 0;
@@ -762,7 +793,7 @@ body {
         .compare-buy {
           width: 100%;
           min-height: 50px;
-          padding: 3% 2%;
+          padding: 4% 2%;
           border: 0 none;
           border-bottom: 1px solid rgba(34, 25, 25, 0.2);
           display: flex;

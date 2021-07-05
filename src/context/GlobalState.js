@@ -16,7 +16,7 @@ const initialState = {
     year: undefined,
     fuel: undefined,
     value: 0,
-    phone: undefined,
+    mobile: undefined,
   },
   excess: false,
   pvt: false,
@@ -155,6 +155,8 @@ export const GlobalProvider = ({ children }) => {
 
     if (info) {
       updateCarInfo(JSON.parse(info));
+    } else {
+      localStorage.car_info = JSON.stringify([]);
     }
   }
 

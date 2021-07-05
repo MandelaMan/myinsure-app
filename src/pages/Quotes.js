@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import QuoteCard from "../components/reusables/QuoteCard";
 import Navigation from "../components/layout/Navigation";
 import Modal from "../components/modals/Modal";
-import { addCommas } from "../helpers/Functions";
+// import { addCommas } from "../helpers/Functions";
 import { car_make, plans } from "../data";
 import _ from "lodash";
 
@@ -56,7 +56,8 @@ const Quotes = () => {
     clearComparisonList();
     resetBenefits();
 
-    data["phone"] = car_info.phone;
+    data["mobile"] =
+      typeof car_info.mobile === "undefined" ? data.mobile : car_info.mobile;
 
     updateCarInfo(data);
 
@@ -170,9 +171,9 @@ const Quotes = () => {
                           <input
                             type="text"
                             name="value"
-                            onChange={(e) => {
-                              console.log(addCommas(e.target.value));
-                            }}
+                            // onChange={(e) => {
+                            //   console.log(addCommas(e.target.value));
+                            // }}
                             ref={register({
                               required: "Please enter estimated value",
                             })}
@@ -180,8 +181,23 @@ const Quotes = () => {
                             defaultValue={car_info.value || ""}
                           />
                         </div>
+                        {typeof car_info.mobile === "undefined" && (
+                          <div className="col-md-4 col-12">
+                            <label>Mobile No.</label>
+                            <br />
+                            <input
+                              type="text"
+                              name="mobile"
+                              ref={register({
+                                required: "Please enter mobile no.",
+                              })}
+                              placeholder="Mobile Number"
+                              defaultValue={car_info.mobile || ""}
+                            />
+                          </div>
+                        )}
                         <div className="col-md-2 col-12">
-                          <button type="submit">SEARCH</button>
+                          <button type="submit">PROCEED</button>
                         </div>
                       </div>
                     </form>
@@ -241,15 +257,21 @@ const Quotes = () => {
                 </div>
               </div> */}
               <div className="row mb-10">
-                {plans.map((p, i) => (
-                  <div className="col-md-4 col-12" key={i}>
-                    <QuoteCard
-                      car_info={car_info}
-                      plan={p}
-                      setselected={setselected}
-                    />
-                  </div>
-                ))}
+                {car_info && car_info.length < 1 ? (
+                  "Fill in the form to get started"
+                ) : (
+                  <>
+                    {plans.map((p, i) => (
+                      <div className="col-md-4 col-12" key={i}>
+                        <QuoteCard
+                          car_info={car_info}
+                          plan={p}
+                          setselected={setselected}
+                        />
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </section>
