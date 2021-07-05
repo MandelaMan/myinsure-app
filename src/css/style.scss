@@ -618,6 +618,10 @@ body {
               label {
                 cursor: pointer;
                 text-align: right;
+
+                input[type="checkbox"] {
+                  cursor: pointer;
+                }
               }
             }
           }
@@ -710,6 +714,10 @@ body {
             span {
               float: right;
               font-weight: 300;
+            }
+
+            & span.strike {
+              text-decoration: line-through;
             }
           }
         }

@@ -4,6 +4,21 @@ const AppReducer = (state, action) => {
   // console.log("payload", action.payload);
 
   switch (action.type) {
+    case "UPDATE_AA_RESCUE":
+      return {
+        ...state,
+        aa_rescue: action.payload,
+      };
+    case "UPDATE_PVT":
+      return {
+        ...state,
+        pvt: action.payload,
+      };
+    case "UPDATE_EXCESS":
+      return {
+        ...state,
+        excess: action.payload,
+      };
     case "SET_COMPARISON_ITEMS":
       return {
         ...state,

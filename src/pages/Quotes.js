@@ -15,6 +15,9 @@ const Quotes = () => {
     to_compare,
     updateCarInfo,
     clearComparisonList,
+    updateExcess,
+    updatePvt,
+    updateAA_Rescue,
   } = useContext(GlobalContext);
 
   const history = useHistory();
@@ -25,11 +28,13 @@ const Quotes = () => {
 
   useEffect(() => {
     console.log(to_compare.length);
+
     if (to_compare.length > 1) {
       setselected("compare");
     } else {
       setselected(null);
     }
+
     getCarInfo(); // eslint-disable-next-line
   }, []);
 
@@ -169,20 +174,29 @@ const Quotes = () => {
                       <ul>
                         <li>
                           <label>
-                            <input type="checkbox" />
+                            <input
+                              type="checkbox"
+                              onChange={() => updateExcess()}
+                            />
                             &nbsp;&nbsp;<span>Add excess protector</span>
                           </label>
                         </li>
                         <li>
                           <label>
-                            <input type="checkbox" />
+                            <input
+                              type="checkbox"
+                              onChange={() => updatePvt()}
+                            />
                             &nbsp;&nbsp;<span>Add political violence</span>
                           </label>
                         </li>
                         <li>
                           <label>
-                            <input type="checkbox" />
-                            &nbsp;&nbsp;<span>Add AA rescue services</span>
+                            <input
+                              type="checkbox"
+                              onChange={() => updateAA_Rescue()}
+                            />
+                            &nbsp;&nbsp;<span>Include AA rescue services</span>
                           </label>
                         </li>
                       </ul>
@@ -190,6 +204,11 @@ const Quotes = () => {
                   </div>
                 </div>
               </div>
+              {/* <div className="row mb-10">
+                <div className="col-md-12 col-12">
+                  <hr />
+                </div>
+              </div> */}
               <div className="row mb-10">
                 {plans.map((p, i) => (
                   <div className="col-md-4 col-12" key={i}>

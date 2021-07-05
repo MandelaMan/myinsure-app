@@ -4,36 +4,37 @@ import { useHistory } from "react-router-dom";
 import { addCommas } from "../../helpers/Functions";
 
 const QuoteCard = ({ plan, car_info, setselected }) => {
-  const { addToComparisonList, to_compare } = useContext(GlobalContext);
+  const { addToComparisonList, to_compare, excess, pvt, aa_rescue } =
+    useContext(GlobalContext);
 
   const history = useHistory();
 
   const basic_premium = () => {
     const value =
       0.04 * car_info.value +
-      plan.excess * car_info.value +
-      plan.pvt * car_info.value +
-      plan.phcf * car_info.value +
+      (excess ? plan.excess * car_info.value : 0) +
+      (pvt ? plan.pvt * car_info.value : 0) +
+      (aa_rescue ? plan.phcf * car_info.value : 0) +
       100 +
       40;
 
     return addCommas(value.toFixed());
   };
 
-  const calculate_excess = (excess) => {
-    const value = excess * car_info.value;
+  const calculate_excess = (inpt_excess) => {
+    const value = inpt_excess * car_info.value;
 
     return addCommas(value.toFixed());
   };
 
-  const calculate_pvt = (pvt) => {
-    const value = pvt * car_info.value;
+  const calculate_pvt = (inpt_pvt) => {
+    const value = inpt_pvt * car_info.value;
 
     return addCommas(value.toFixed());
   };
 
-  const calculate_phcf = (phcf) => {
-    const value = phcf * car_info.value;
+  const calculate_phcf = (inpt_phcf) => {
+    const value = inpt_phcf * car_info.value;
 
     return addCommas(value.toFixed());
   };
@@ -58,13 +59,22 @@ const QuoteCard = ({ plan, car_info, setselected }) => {
       </div>
       <ul className="benefits">
         <li>
-          Excess protector<span>Ksh {calculate_excess(plan.excess)}</span>
+          Excess protector
+          <span className={!excess ? "strike" : ""}>
+            Ksh {calculate_excess(plan.excess)}
+          </span>
         </li>
         <li>
-          Political violence<span>Ksh {calculate_pvt(plan.pvt)}</span>
+          Political violence
+          <span className={!pvt ? "strike" : ""}>
+            Ksh {calculate_pvt(plan.pvt)}
+          </span>
         </li>
         <li>
-          PHCF<span>Ksh {calculate_phcf(plan.phcf)}</span>
+          PHCF
+          <span className={!aa_rescue ? "strike" : ""}>
+            Ksh {calculate_phcf(plan.phcf)}
+          </span>
         </li>
         <li>
           Excise Duty<span>Ksh 100</span>

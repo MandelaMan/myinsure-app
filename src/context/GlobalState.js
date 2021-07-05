@@ -9,7 +9,7 @@ import AppReducer from "./AppReducer";
 // } from "../helpers/Functions";
 
 const initialState = {
-  to_compare: [{}, {}, {}, {}],
+  to_compare: [],
   car_info: {
     make: undefined,
     model: undefined,
@@ -18,12 +18,34 @@ const initialState = {
     value: 0,
     phone: undefined,
   },
+  excess: false,
+  pvt: false,
+  aa_rescue: false,
 };
 
 export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  async function updateExcess() {
+    dispatch({
+      type: "UPDATE_EXCESS",
+      payload: !state.excess,
+    });
+  }
+  async function updatePvt() {
+    dispatch({
+      type: "UPDATE_PVT",
+      payload: !state.pvt,
+    });
+  }
+  async function updateAA_Rescue() {
+    dispatch({
+      type: "UPDATE_AA_RESCUE",
+      payload: !state.aa_rescue,
+    });
+  }
 
   async function addToComparisonList(code, name, price, company) {
     let comparison = JSON.parse(localStorage.compare);
@@ -118,9 +140,15 @@ export const GlobalProvider = ({ children }) => {
         getComparisonList,
         removeFromComparisonList,
         clearComparisonList,
+        updateExcess,
+        updatePvt,
+        updateAA_Rescue,
 
         car_info: state.car_info,
         to_compare: state.to_compare,
+        excess: state.excess,
+        pvt: state.pvt,
+        aa_rescue: state.aa_rescue,
       }}
     >
       {children}
