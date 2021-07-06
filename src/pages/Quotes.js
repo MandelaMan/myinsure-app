@@ -43,15 +43,6 @@ const Quotes = () => {
     getCarInfo(); // eslint-disable-next-line
   }, []);
 
-  // useEffect(() => {
-  //   if (to_compare.length > 1) {
-  //     setselected("compare");
-  //   } else {
-  //     setselected(null);
-  //   }
-  //   // eslint-disable-next-line
-  // }, [to_compare]);
-
   const onSubmit = (data) => {
     clearComparisonList();
     resetBenefits();
