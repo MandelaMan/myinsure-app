@@ -3,19 +3,22 @@ import { GlobalContext } from "../../context/GlobalState";
 import { useHistory } from "react-router-dom";
 import { addCommas } from "../../helpers/Functions";
 
-const QuoteCard = ({ plan, car_info, setselected }) => {
-  const { addToComparisonList, to_compare, excess, pvt, aa_rescue, phcf } =
-    useContext(GlobalContext);
+const QuoteCard = ({ plan, car_info, setselected, benefits }) => {
+  const { addToComparisonList, to_compare } = useContext(GlobalContext);
 
   const history = useHistory();
+
+  const replaceSpacewithDash = (name) => {
+    return name.replace(/\s/g, "-").toLowerCase();
+  };
 
   const basic_premium = () => {
     const value =
       0.04 * car_info.value +
-      (excess ? plan.excess * car_info.value : 0) +
-      (pvt ? plan.pvt * car_info.value : 0) +
-      (phcf ? plan.phcf * car_info.value : 0) +
-      (aa_rescue ? 5000 : 0) +
+      (benefits.excess ? plan.excess * car_info.value : 0) +
+      (benefits.pvt ? plan.pvt * car_info.value : 0) +
+      (benefits.phcf ? plan.phcf * car_info.value : 0) +
+      (benefits.aa_rescue ? 5000 : 0) +
       100 +
       40;
 
@@ -47,12 +50,7 @@ const QuoteCard = ({ plan, car_info, setselected }) => {
           <button
             onClick={() => {
               setselected("compare");
-              addToComparisonList(
-                plan.code,
-                plan.name,
-                basic_premium(),
-                plan.company
-              );
+              addToComparisonList(plan.code, plan.name, plan.company.alias);
             }}
             disabled={to_compare.length > 3 ? true : false}
           >
@@ -60,7 +58,15 @@ const QuoteCard = ({ plan, car_info, setselected }) => {
           </button>
         </div>
         <div className="buy">
-          <button onClick={() => history.push("/quote/details/plan")}>
+          <button
+            onClick={() =>
+              history.push(
+                `/insurance-quote/${replaceSpacewithDash(plan.name)}/${
+                  plan.code
+                }`
+              )
+            }
+          >
             BUY NOW
           </button>
         </div>
@@ -76,7 +82,8 @@ const QuoteCard = ({ plan, car_info, setselected }) => {
       <div className="price-settings">
         <div className="price">
           <h3>
-            ksh {basic_premium()} /<span>yr.</span>
+            ksh. {basic_premium()}
+            <span>&nbsp;/yr</span>
           </h3>
         </div>
         <div className="best-value"></div>
@@ -84,23 +91,23 @@ const QuoteCard = ({ plan, car_info, setselected }) => {
       <ul className="benefits">
         <li>
           Excess protector
-          <span className={!excess ? "strike" : ""}>
+          <span className={!benefits.excess ? "strike" : ""}>
             Ksh {calculate_excess(plan.excess)}
           </span>
         </li>
         <li>
           Political violence
-          <span className={!pvt ? "strike" : ""}>
+          <span className={!benefits.pvt ? "strike" : ""}>
             Ksh {calculate_pvt(plan.pvt)}
           </span>
         </li>
         <li>
           PHCF
-          <span className={!phcf ? "strike" : ""}>
+          <span className={!benefits.phcf ? "strike" : ""}>
             Ksh {calculate_phcf(plan.phcf)}
           </span>
         </li>
-        {aa_rescue && (
+        {benefits.aa_rescue && (
           <li>
             AA Rescue<span>Ksh 5000</span>
           </li>

@@ -434,7 +434,7 @@ body {
     .quote-display {
       width: 70%;
       min-height: 500px;
-      margin: 0 auto 10% auto;
+      margin: 0 auto;
 
       .specific-quote {
         width: 100%;
@@ -485,15 +485,21 @@ body {
 
               h6 {
                 font-size: 1.5em;
+                font-weight: bold;
               }
 
               ul {
-                padding-top: 1%;
+                // padding-top: 1%;
                 list-style-type: none;
 
                 li {
                   display: inline-block;
                   padding: 0 0.3rem 0 0;
+
+                  img {
+                    width: 20px;
+                    height: 20px;
+                  }
                 }
               }
 
@@ -507,29 +513,38 @@ body {
               display: grid;
               place-items: center stretch;
 
-              p {
-                font-size: 1.4em;
-                font-weight: bold;
-                margin-top: -5%;
-                float: right;
-                text-align: center;
+              // p {
+              //   font-size: 1.4em;
+              //   font-weight: bold;
+              //   margin-top: -5%;
+              //   float: right;
+              //   text-align: center;
 
-                span {
-                  font-size: 0.7em;
-                  font-weight: 500;
-                }
-              }
+              //   span {
+              //     font-size: 0.7em;
+              //     font-weight: 500;
+              //   }
+              // }
 
               button {
-                margin-top: -12%;
+                margin-top: -15%;
                 padding: 0.4rem 0;
                 color: #fff;
                 border: 0 none;
+                font-size: 1em;
                 background: linear-gradient(180deg, #f54c4c 0, #f43333 100%);
                 box-shadow: 0 10px 25px -10px #f54c4c;
                 transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
                 border-radius: 3px;
                 cursor: pointer;
+
+                span.price {
+                  font-size: 1.2em;
+                }
+
+                span.year {
+                  font-size: 1em;
+                }
               }
             }
           }
@@ -569,7 +584,7 @@ body {
             .details {
               width: 100%;
               min-height: 200px;
-              padding: 1% 5% 3% 5%;
+              padding: 1% 5%;
 
               h6 {
                 font-size: 0.8em;
@@ -585,13 +600,53 @@ body {
                   padding: 0.5rem 0;
                   font-weight: 0.5em;
                   font-weight: bold;
+                  font-size: 1.05em;
 
                   span {
                     cursor: pointer;
                   }
                 }
+
+                li.excluded {
+                  color: #868ba1;
+                }
               }
             }
+          }
+
+          .claims-support {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            // justify-content: space-between;
+            padding: 1% 5%;
+
+            .claims-imgs {
+              width: 30%;
+              display: flex;
+              justify-content: space-between;
+              margin-right: 3%;
+
+              span {
+                padding: 0 10%;
+              }
+
+              img {
+                width: 10px;
+                height: 10px;
+              }
+            }
+
+            .claims-text {
+              width: 50%;
+            }
+
+            button {
+              float: right;
+              width: 20%;
+            }
+
+            // justify-content: space-around;
           }
 
           h6 {
@@ -761,6 +816,7 @@ body {
 
               span {
                 text-transform: lowercase;
+                font-size: 0.7em;
               }
             }
           }

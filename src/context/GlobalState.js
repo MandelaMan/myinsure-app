@@ -11,17 +11,14 @@ import AppReducer from "./AppReducer";
 const initialState = {
   to_compare: [],
   car_info: {
-    make: undefined,
-    model: undefined,
-    year: undefined,
-    fuel: undefined,
-    value: 0,
-    mobile: undefined,
+    make: null,
+    model: null,
+    year: null,
+    fuel: null,
+    value: null,
+    mobile: null,
   },
-  excess: false,
-  pvt: false,
-  aa_rescue: false,
-  phcf: false,
+  inc_benefits: { excess: true, pvt: true, phcf: true, aa_rescue: false },
 };
 
 export const GlobalContext = createContext(initialState);
@@ -30,56 +27,64 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   async function updateExcess() {
+    let benefits = JSON.parse(localStorage.inc_benefits);
+
+    benefits.excess = !state.inc_benefits.excess;
+
     dispatch({
-      type: "UPDATE_EXCESS",
-      payload: !state.excess,
+      type: "UPDATE_BENEFITS",
+      payload: benefits,
     });
   }
 
   async function updatePvt() {
+    let benefits = JSON.parse(localStorage.inc_benefits);
+
+    benefits.pvt = !state.inc_benefits.pvt;
+
     dispatch({
-      type: "UPDATE_PVT",
-      payload: !state.pvt,
+      type: "UPDATE_BENEFITS",
+      payload: benefits,
     });
   }
 
   async function updateAA_Rescue() {
+    let benefits = JSON.parse(localStorage.inc_benefits);
+
+    benefits.aa_rescue = !state.inc_benefits.aa_rescue;
+
     dispatch({
-      type: "UPDATE_AA_RESCUE",
-      payload: !state.aa_rescue,
+      type: "UPDATE_BENEFITS",
+      payload: benefits,
     });
   }
 
   async function updatePHCF() {
+    let benefits = JSON.parse(localStorage.inc_benefits);
+
+    benefits.phcf = !state.inc_benefits.phcf;
+
     dispatch({
-      type: "UPDATE_PHCF",
-      payload: !state.phcf,
+      type: "UPDATE_BENEFITS",
+      payload: benefits,
     });
   }
 
   async function resetBenefits() {
-    dispatch({
-      type: "UPDATE_EXCESS",
-      payload: false,
-    });
+    let benefits = {
+      excess: true,
+      pvt: true,
+      phcf: true,
+      aa_rescue: false,
+    };
 
     dispatch({
-      type: "UPDATE_PVT",
-      payload: false,
-    });
-
-    dispatch({
-      type: "UPDATE_AA_RESCUE",
-      payload: false,
-    });
-
-    dispatch({
-      type: "UPDATE_PHCF",
-      payload: false,
+      type: "UPDATE_BENEFITS",
+      payload: benefits,
     });
   }
 
-  async function addToComparisonList(code, name, price, company) {
+  async function addToComparisonList(code, name, company) {
     let comparison = JSON.parse(localStorage.compare);
 
     let element = { name: code };
@@ -92,7 +97,6 @@ export const GlobalProvider = ({ children }) => {
       const item = {
         code,
         name,
-        price,
         company,
       };
 
@@ -151,18 +155,33 @@ export const GlobalProvider = ({ children }) => {
   }
 
   async function getCarInfo() {
-    const info = localStorage.car_info;
-
-    if (info) {
-      updateCarInfo(JSON.parse(info));
+    if (localStorage.hasOwnProperty("car_info")) {
+      updateCarInfo(JSON.parse(localStorage.car_info));
     } else {
-      localStorage.car_info = JSON.stringify([]);
+      localStorage.setItem("car_info", JSON.stringify(state.car_info));
     }
+  }
+
+  async function getPlanBenefits() {
+    let benefits;
+
+    if (localStorage.hasOwnProperty("inc_benefits")) {
+      benefits = JSON.parse(localStorage.inc_benefits);
+    } else {
+      benefits = state.inc_benefits;
+      localStorage.setItem("inc_benefits", JSON.stringify(state.inc_benefits));
+    }
+
+    dispatch({
+      type: "UPDATE_BENEFITS",
+      payload: benefits,
+    });
   }
 
   useEffect(() => {
     getCarInfo();
     getComparisonList();
+    getPlanBenefits();
     // eslint-disable-next-line
   }, []);
 
@@ -183,10 +202,7 @@ export const GlobalProvider = ({ children }) => {
 
         car_info: state.car_info,
         to_compare: state.to_compare,
-        excess: state.excess,
-        pvt: state.pvt,
-        aa_rescue: state.aa_rescue,
-        phcf: state.phcf,
+        inc_benefits: state.inc_benefits,
       }}
     >
       {children}

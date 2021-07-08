@@ -9,10 +9,8 @@ const ComparisonModal = ({ setselected }) => {
     getComparisonList,
     to_compare,
     removeFromComparisonList,
-    excess,
-    pvt,
-    aa_rescue,
-    phcf,
+    inc_benefits,
+    car_info,
   } = useContext(GlobalContext);
 
   // const history = useHistory();
@@ -37,10 +35,8 @@ const ComparisonModal = ({ setselected }) => {
                       key={i}
                       setselected={setselected}
                       item={c}
-                      excess={excess}
-                      pvt={pvt}
-                      aa_rescue={aa_rescue}
-                      phcf={phcf}
+                      benefits={inc_benefits}
+                      car_info={car_info}
                       items={to_compare.length}
                       removeFromComparisonList={removeFromComparisonList}
                     />

@@ -4,31 +4,18 @@ const AppReducer = (state, action) => {
   // console.log("payload", action.payload);
 
   switch (action.type) {
-    case "UPDATE_PHCF":
+    case "UPDATE_BENEFITS":
+      localStorage.inc_benefits = JSON.stringify(action.payload);
       return {
         ...state,
-        phcf: action.payload,
-      };
-    case "UPDATE_AA_RESCUE":
-      return {
-        ...state,
-        aa_rescue: action.payload,
-      };
-    case "UPDATE_PVT":
-      return {
-        ...state,
-        pvt: action.payload,
-      };
-    case "UPDATE_EXCESS":
-      return {
-        ...state,
-        excess: action.payload,
+        inc_benefits: action.payload,
       };
     case "SET_COMPARISON_ITEMS":
       return {
         ...state,
         to_compare: action.payload,
       };
+
     case "SET_CAR_INFO":
       return {
         ...state,

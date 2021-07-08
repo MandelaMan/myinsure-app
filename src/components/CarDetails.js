@@ -32,7 +32,7 @@ const CarDetails = ({ carInfo, setstep }) => {
 
     updateCarInfo(data);
 
-    history.push("/insurance-quotes");
+    history.push("/car-insurance");
   };
 
   return (

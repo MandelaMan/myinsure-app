@@ -19,12 +19,11 @@ const CarFormDetails = () => {
     clearComparisonList();
     resetBenefits();
 
-    data["mobile"] =
-      typeof car_info.mobile === "undefined" ? data.mobile : car_info.mobile;
+    data["mobile"] = car_info.mobile === null ? data.mobile : car_info.mobile;
 
     updateCarInfo(data);
 
-    history.push("/insurance-quotes");
+    history.push("/car-insurance");
   };
 
   return (
@@ -48,7 +47,7 @@ const CarFormDetails = () => {
                     required: "Please enter password",
                   })}
                 >
-                  {car_info.make ? (
+                  {car_info.make !== null ? (
                     <option value={car_info.make}>{car_info.make}</option>
                   ) : (
                     <option value="">Select car make</option>
@@ -67,7 +66,7 @@ const CarFormDetails = () => {
                     required: "Please enter password",
                   })}
                 >
-                  {car_info.model ? (
+                  {car_info.model !== null ? (
                     <option value={car_info.model}>{car_info.model}</option>
                   ) : (
                     <option value="">Select car model</option>
@@ -88,7 +87,7 @@ const CarFormDetails = () => {
                     required: "Please enter password",
                   })}
                 >
-                  {car_info.year ? (
+                  {car_info.year !== null ? (
                     <option value={car_info.year}>{car_info.year}</option>
                   ) : (
                     <option value="">Year of manufacture</option>
@@ -107,7 +106,7 @@ const CarFormDetails = () => {
                     required: "Please enter password",
                   })}
                 >
-                  {car_info.fuel ? (
+                  {car_info.fuel !== null ? (
                     <option value={car_info.fuel}>{car_info.fuel}</option>
                   ) : (
                     <option value="">Fuel Type</option>
@@ -122,16 +121,19 @@ const CarFormDetails = () => {
                 <input
                   type="text"
                   name="value"
+                  // onChange={(e) => {
+                  //   console.log(addCommas(e.target.value));
+                  // }}
                   ref={register({
                     required: "Please enter estimated value",
                   })}
                   placeholder="Car estimated value"
-                  defaultValue={car_info.value || ""}
+                  defaultValue={car_info.value === null ? "" : car_info.value}
                 />
               </div>
             </div>
             <div className="row">
-              {typeof car_info.mobile === "undefined" && (
+              {car_info.mobile === null && (
                 <div className="col-md-8 col-12">
                   <input
                     type="text"

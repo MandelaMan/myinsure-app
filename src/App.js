@@ -12,8 +12,12 @@ const App = () => {
       <GlobalProvider>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/insurance-quotes" exact component={Quotes} />
-          <Route path="/quote/:details/:plan" exact component={Quote} />
+          <Route path="/car-insurance" exact component={Quotes} />
+          <Route
+            path="/insurance-quote/:name/:details"
+            exact
+            component={Quote}
+          />
           <Route path="/compare" exact component={Comparison} />
         </Switch>
       </GlobalProvider>

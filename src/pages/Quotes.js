@@ -20,11 +20,8 @@ const Quotes = () => {
     updatePvt,
     updateAA_Rescue,
     updatePHCF,
-    excess,
-    pvt,
-    aa_rescue,
-    phcf,
     resetBenefits,
+    inc_benefits,
   } = useContext(GlobalContext);
 
   const history = useHistory();
@@ -32,6 +29,8 @@ const Quotes = () => {
   const { register, handleSubmit } = useForm();
 
   const [selected, setselected] = useState(null);
+
+  console.log(inc_benefits.excess);
 
   useEffect(() => {
     if (to_compare.length > 1) {
@@ -47,12 +46,11 @@ const Quotes = () => {
     clearComparisonList();
     resetBenefits();
 
-    data["mobile"] =
-      typeof car_info.mobile === "undefined" ? data.mobile : car_info.mobile;
+    data["mobile"] = car_info.mobile === null ? data.mobile : car_info.mobile;
 
     updateCarInfo(data);
 
-    history.push("/insurance-quotes");
+    history.push("/car-insurance");
   };
 
   return (
@@ -76,7 +74,7 @@ const Quotes = () => {
                               required: "Please enter password",
                             })}
                           >
-                            {car_info.make ? (
+                            {car_info.make !== null ? (
                               <option value={car_info.make}>
                                 {car_info.make}
                               </option>
@@ -99,7 +97,7 @@ const Quotes = () => {
                               required: "Please enter password",
                             })}
                           >
-                            {car_info.model ? (
+                            {car_info.model !== null ? (
                               <option value={car_info.model}>
                                 {car_info.model}
                               </option>
@@ -122,15 +120,24 @@ const Quotes = () => {
                               required: "Please enter password",
                             })}
                           >
-                            {car_info.fuel ? (
-                              <option value={car_info.fuel}>
-                                {car_info.fuel}
-                              </option>
+                            {car_info.fuel !== null ? (
+                              <>
+                                <option value={car_info.fuel}>
+                                  {car_info.fuel}
+                                </option>
+                                {car_info.fuel === "Petrol" ? (
+                                  <option value="Diesel">Diesel</option>
+                                ) : (
+                                  <option value="Petrol">Petrol</option>
+                                )}
+                              </>
                             ) : (
-                              <option value="">Fuel Type</option>
+                              <>
+                                <option value="">Fuel Type</option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                              </>
                             )}
-                            <option value="Petrol">Petrol</option>
-                            <option value="Diesel">Diesel</option>
                           </select>
                         </div>
                         <div className="col-md-4 col-12">
@@ -142,7 +149,7 @@ const Quotes = () => {
                               required: "Please enter password",
                             })}
                           >
-                            {car_info.year ? (
+                            {car_info.year !== null ? (
                               <option value={car_info.year}>
                                 {car_info.year}
                               </option>
@@ -169,10 +176,12 @@ const Quotes = () => {
                               required: "Please enter estimated value",
                             })}
                             placeholder="Car estimated value"
-                            defaultValue={car_info.value || ""}
+                            defaultValue={
+                              car_info.value === null ? "" : car_info.value
+                            }
                           />
                         </div>
-                        {typeof car_info.mobile === "undefined" && (
+                        {car_info.mobile === null && (
                           <div className="col-md-4 col-12">
                             <label>Mobile No.</label>
                             <br />
@@ -201,8 +210,9 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
-                              checked={excess ? "checked" : ""}
+                              checked={inc_benefits.excess ? "checked" : ""}
                               onChange={() => updateExcess()}
+                              disabled={car_info.value === null ? true : false}
                             />
                             &nbsp;&nbsp;<span>Add excess protector</span>
                           </label>
@@ -211,8 +221,9 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
-                              checked={pvt ? "checked" : ""}
+                              checked={inc_benefits.pvt ? "checked" : ""}
                               onChange={() => updatePvt()}
+                              disabled={car_info.value === null ? true : false}
                             />
                             &nbsp;&nbsp;<span>Add political violence</span>
                           </label>
@@ -221,8 +232,9 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
-                              checked={phcf ? "checked" : ""}
+                              checked={inc_benefits.phcf ? "checked" : ""}
                               onChange={() => updatePHCF()}
+                              disabled={car_info.value === null ? true : false}
                             />
                             &nbsp;&nbsp;<span>Add PHCF</span>
                           </label>
@@ -231,8 +243,9 @@ const Quotes = () => {
                           <label>
                             <input
                               type="checkbox"
-                              checked={aa_rescue ? "checked" : ""}
+                              checked={inc_benefits.aa_rescue ? "checked" : ""}
                               onChange={() => updateAA_Rescue()}
+                              disabled={car_info.value === null ? true : false}
                             />
                             &nbsp;&nbsp;<span>Include AA rescue services</span>
                           </label>
@@ -248,7 +261,7 @@ const Quotes = () => {
                 </div>
               </div> */}
               <div className="row mb-10">
-                {car_info && car_info.length < 1 ? (
+                {car_info.value < 1 ? (
                   "Fill in the form to get started"
                 ) : (
                   <>
@@ -258,6 +271,7 @@ const Quotes = () => {
                           car_info={car_info}
                           plan={p}
                           setselected={setselected}
+                          benefits={inc_benefits}
                         />
                       </div>
                     ))}
